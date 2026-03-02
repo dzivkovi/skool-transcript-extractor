@@ -8,23 +8,29 @@ set -e
 
 NAME="skool-transcript-extractor"
 VERSION=$(grep -o '"version": "[^"]*"' manifest.json | cut -d'"' -f4)
-OUTFILE="${NAME}-v${VERSION}.zip"
+OUTDIR="releases"
+OUTFILE="$(pwd)/${OUTDIR}/${NAME}-v${VERSION}.zip"
+
+# Ensure releases directory exists
+mkdir -p "$OUTDIR"
 
 # Remove old build if it exists
 rm -f "$OUTFILE"
 
-# Zip only the files the extension needs
-zip -r "$OUTFILE" \
-  manifest.json \
-  content.js \
-  content.css \
-  popup.html \
-  popup.js \
-  popup.css \
-  icons/
+# Stage a clean copy so the zip contains a self-contained folder
+STAGING=$(mktemp -d)
+trap 'rm -rf "$STAGING"' EXIT
 
+mkdir "$STAGING/$NAME"
+cp manifest.json content.js content.css popup.html popup.js popup.css "$STAGING/$NAME/"
+cp -r icons "$STAGING/$NAME/"
+
+# Zip from the staging dir so paths start with skool-transcript-extractor/
+(cd "$STAGING" && zip -r "$OUTFILE" "$NAME")
+
+DISPLAY_PATH="${OUTDIR}/${NAME}-v${VERSION}.zip"
 echo ""
-echo "Packaged: $OUTFILE"
+echo "Packaged: $DISPLAY_PATH"
 echo "Size: $(du -h "$OUTFILE" | cut -f1)"
 echo ""
 echo "This zip can be:"

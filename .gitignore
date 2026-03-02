@@ -2,3 +2,6 @@
 *.zip
 *.crx
 *.pem
+
+# Allow release zips to be tracked
+!releases/*.zip

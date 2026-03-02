@@ -104,6 +104,22 @@ Once extraction finishes, the transcript appears in the text box. Use:
 
 ---
 
+## Packaging for Distribution
+
+To create a `.zip` file for sharing or uploading to the Chrome Web Store:
+
+```bash
+bash package.sh
+```
+
+This produces `releases/skool-transcript-extractor-v<version>.zip` (version is read from `manifest.json`). The zip contains only the files Chrome needs — no docs, examples, or dev files.
+
+**What recipients do with the zip:** Unzip it, then follow the [Installation](#installation-step-by-step) steps above, pointing Chrome at the unzipped folder.
+
+> Release zips in `releases/` are **committed to the repo** so anyone can grab a ready-made build. Stray `.zip` files elsewhere in the repo are gitignored.
+
+---
+
 ## Updating After Code Changes
 
 When you edit any file in this folder:
@@ -123,6 +139,8 @@ content.js       — Injected into Skool pages. Finds videos, extracts captions.
 content.css      — Styles for any in-page UI (currently unused/reserved)
 popup.html/js/css — The popup UI you see when clicking the extension icon
 icons/           — Extension icons (16, 48, 128px)
+package.sh       — Creates a clean .zip in releases/ for distribution
+releases/        — Ready-made .zip builds (committed to repo)
 examples/        — Sample output and screenshots
 ```
 
