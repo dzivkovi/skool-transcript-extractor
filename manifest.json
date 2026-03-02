@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Skool Transcript Extractor",
+  "version": "1.0.0",
+  "description": "Extract transcripts from Skool native video recordings",
+  "permissions": ["activeTab", "clipboardWrite"],
+  "host_permissions": [
+    "https://*.skool.com/*",
+    "https://stream.video.skool.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.skool.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

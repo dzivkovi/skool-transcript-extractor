@@ -1,0 +1,4 @@
+# Packaged builds
+*.zip
+*.crx
+*.pem

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skool Transcript</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📝 Skool Transcript</h1>
+      <div id="status" class="status"></div>
+    </header>
+
+    <section class="controls">
+      <div class="format-select">
+        <label for="format">Format:</label>
+        <select id="format">
+          <option value="plain">Plain Text</option>
+          <option value="timestamps">With Timestamps</option>
+          <option value="srt">SRT Subtitles</option>
+        </select>
+      </div>
+
+      <button id="extractBtn" class="btn primary">
+        ⚡ Extract Transcript
+      </button>
+    </section>
+
+    <section id="result" class="result hidden">
+      <div class="result-header">
+        <span id="resultInfo"></span>
+        <button id="copyBtn" class="btn small">📋 Copy</button>
+      </div>
+      <textarea id="transcript" readonly></textarea>
+      <button id="downloadBtn" class="btn secondary">💾 Download</button>
+    </section>
+
+    <footer>
+      <span>Skool Transcript Extractor</span>
+      <span>v1.0.0</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
